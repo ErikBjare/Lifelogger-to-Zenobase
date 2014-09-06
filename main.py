@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import time
+import pprint
 
 import gspread
 
@@ -53,7 +54,6 @@ def get_label_cells(category, label):
     for j, date in enumerate(dates):
         cell = raw_table[4+j][i]
         if cell:
-            print(cell)
             cells[date] = cell
     return cells
 
@@ -67,7 +67,7 @@ def load_table():
         for i, label in get_category_labels(i):
             table[cat][label] = get_label_cells(cat, label)
             #print(" - {}".format(label))
-    print(table)
+    pprint.pprint(table, indent=2)
     return table
 
 table = load_table()
